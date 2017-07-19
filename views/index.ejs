@@ -1,17 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Home Page</title>
+    <title>Schoodle</title>
 
-    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
-    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css">
+    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css">
+    <link rel="stylesheet" href="/styles/layout.css" type="text/css">
+
+    <script type="text/javascript" src="/vendor/jquery-3.2.1.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
+
+    <style>
+      html, body {
+        background-color: #e4ebf1;
+        font-family: avenir, sans-serif;
+      }
+      h1 {
+        padding: 0;
+        margin: 0;
+      }
+      .jumbotron {
+        background-color: #3798d4;
+        height: 400px;
+        padding: 2.5em;
+        text-align: center;
+      }
+      @media screen and (min-width: 600px) {
+        .jumbotron {
+          padding: 7.5em;
+        }
+      }
+      .jumbotron button {
+        background-color: #ff876d;
+        border: none;
+        border-radius: 4px;
+        color: white;
+        font-size: 20px;
+        height: 60px;
+        width: 250px;
+      }
+      .jumbotron h1, h2 {
+        color: white;
+      }
+      .navbar {
+        font-size: 20px;
+        height: 60px;
+        padding: 15px;
+        text-align: center;
+      }
+    </style>
   </head>
 
   <body>
-    <h1>Hello World!</h1>
+    <main>
+      <div class="jumbotron">
+        <h1>Get together with Schoodle</h1>
+        <h2>The simple way to decide on dates, places & more</h2>
+        <a href="/event/new"><button>Create Schoodle Event</button></a>
+      </div>
+    </main>
   </body>
 </html>

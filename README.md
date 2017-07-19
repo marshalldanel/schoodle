@@ -1,5 +1,5 @@
 [![NPM Version][npm-image]][npm-url]
-[![Downloads Stats][npm-downloads]][npm-url]
+[![Downloads Stats][npm-downloads]
 
 # Schoodle
 
@@ -35,9 +35,9 @@ Other dependencies: body-parser, knex
 
 ## Authors
 
-[https://github.com/camlee23](https://github.com/camlee23)
-[https://github.com/kaichesterni](https://github.com/kaichesterni)
-[https://github.com/marshalldanel](https://github.com/marshalldanel/)
+* [https://github.com/camlee23](https://github.com/camlee23)
+* [https://github.com/kaichesterni](https://github.com/kaichesterni)
+* [https://github.com/marshalldanel](https://github.com/marshalldanel/)
 
 
 ## Acknowledgments
@@ -46,4 +46,5 @@ Other dependencies: body-parser, knex
 
 <!-- Markdown link & img dfn's -->
 [npm-image]: https://img.shields.io/npm/v/datadog-metrics.svg?style=flat-square
+[npm-url]: https://npmjs.org/package/datadog-metrics
 [npm-downloads]: https://img.shields.io/hexpm/dt/plug.svg

@@ -1,6 +1,3 @@
-[![NPM Version][npm-image]][npm-url]
-[![Downloads Stats][npm-downloads]
-
 # Schoodle
 
 Will be a Doodle clone but is currently a work in progress.
@@ -43,8 +40,3 @@ Other dependencies: body-parser, knex
 ## Acknowledgments
 
 * The good folks at LHL
-
-<!-- Markdown link & img dfn's -->
-[npm-image]: https://img.shields.io/npm/v/datadog-metrics.svg?style=flat-square
-[npm-url]: https://npmjs.org/package/datadog-metrics
-[npm-downloads]: https://img.shields.io/hexpm/dt/plug.svg

@@ -9,7 +9,7 @@
     "local": "./node_modules/.bin/nodemon --ignore public/",
     "knex": "./node_modules/.bin/knex"
   },
-  "author": "Lighthouse Labs",
+  "author": "camli23, kaichesterni, marshalldanel",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.15.2",

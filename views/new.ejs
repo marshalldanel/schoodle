@@ -51,10 +51,11 @@
     <main>
       <div>
         <h1>New Event</h1>
-        <form method='POST' action='/event/new'>
+        <form method='POST' action='/event'>
           <input name='title' type='text' placeholder='Event Title' maxlength='32'><br><br>
           <input name='location' type='text' placeholder='Address' maxlength='64'><br><br>
           <input name='description' type='text' placeholder='Description' maxlength='256'><br><br>
+          <input name='date' type='date' maxlength='256'><br><br>
           <input name='admin_name' type='text' placeholder='Your Name' maxlength='32'><br><br>
           <input name='admin_email' type='email' placeholder='Your Email Address' maxlength='64'><br><br>
           <button type='submit'>Ok!</button>

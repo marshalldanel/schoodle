@@ -14,6 +14,8 @@ const knex        = require('knex')(knexConfig[ENV]);
 const morgan      = require('morgan');
 const knexLogger  = require('knex-logger');
 
+const randStr     = require('./public/scripts/makeCode');
+
 // Seperated Routes for each Resource
 // const usersRoutes = require('./routes/users');
 
@@ -45,11 +47,13 @@ app.get('/event/new', (req, res) => {
 
 // POST event/admin data to db
 app.post('/event', (req, res) => {
+  let randCode = randStr();
   knex.transaction(() => {
     return knex('admins')
       .insert({
         name: req.body.admin_name,
-        email: req.body.admin_email
+        email: req.body.admin_email,
+        admin_code: randCode
       })
       .returning('*')
       .then(([admin]) => {
@@ -59,6 +63,7 @@ app.post('/event', (req, res) => {
             location: req.body.location,
             description: req.body.description,
             event_date: req.body.date,
+            event_code: randCode,
             admin_id: admin.id
           });
       })

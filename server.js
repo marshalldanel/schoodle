@@ -36,11 +36,19 @@ app.use('/styles', sass({
 app.use(express.static('public'));
 
 // Mount all resource routes
-app.use('/api/users', usersRoutes(knex));
+app.use('/event/new', usersRoutes(knex));
 
 // Create new event page
 app.get('/event/new', (req, res) => {
   res.render('new');
+});
+
+app.post('/event', (req, res) => {
+  knex('events')
+    .insert({title: req.body.title, location: req.body.location, description: req.body.description})
+    .then(function () {
+      res.json({ success: true, message: 'ok' });
+    });
 });
 
 // Home page

@@ -14,13 +14,13 @@
         <h2>Admin ID: <%= adminid %></h2>
 
         <div class='event-links'>
-          <p>Participation link<br><a href='/event/<%= eventid %>'>Send this to your friends</a></p>
-          <p>Administration link<br><a href='/event/<%= eventid + adminid %>'>The page you're on right now!</a></p>
+          <p>Participation link<br>Send this to your friends!<br><a href='/event/<%= eventid %>'>www.schoodle.com/event/<%= eventid %></a></p>
+          <p>Administration link <br> Keep this link in a safe place! You'll need it to edit your event.</br><br><a href='/event/<%= eventid %>/<%= adminid %>/admin'>www.schoodle.com/event/<%= eventid %>/<%= adminid %>/admin</a></p>
         </div>
 
         <div class='event-buttons'>
-          <form method='GET' action='/event/<%= eventid + adminid %>/edit'><button>Edit</button></form><br>
-          <form method='POST' action='/event/<%= eventid + adminid %>/delete'><button>Delete</button></form>
+          <form method='GET' action='/event/<%= eventid %>/<%= adminid %>/edit'><button>Edit</button></form><br>
+          <form method='POST' action='/event/<%= eventid %>/<%= adminid %>/delete'><button>Delete</button></form>
         </div>
       </div>
     </main>

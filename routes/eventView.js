@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 const express = require('express');
 const router  = express.Router();
@@ -24,3 +24,18 @@ module.exports = (knex) => {
   return router;
 };
 
+
+
+// POST edit event
+// app.post('/event/:longid/edit', (req, res) => {
+//   const longid = req.params.longid;
+//   const adminid = longid.substr(0, 8);
+//   const eventid = longid.substr(8, 8);
+// });
+
+// POST delete event
+// app.post('/event/:longid/delete', (req, res) => {
+//   const longid = req.params.longid;
+//   const adminid = longid.substr(0, 8);
+//   const eventid = longid.substr(8, 8);
+// });

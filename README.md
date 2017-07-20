@@ -4,19 +4,19 @@ Will be a Doodle clone but is currently a work in progress.
 
 ## Screenshots
 
-Coming soon..
+Coming soon...
 
 ## Project Stack
 
-Front-end: Bootstrap, Sass, JS, jQuery
+Front-end: [Bootstrap](http://getbootstrap.com/), [Sass](http://sass-lang.com/), [JS](https://www.javascript.com/), [jQuery](http://jquery.com/)
 
-Web Server: Node.js
+Web Server: [Node JS](https://nodejs.org/en/)
 
-Middleware: Express
+Middleware: [Express JS](http://expressjs.com/)
 
-Database: PostgreSQL
+Database: [PostgreSQL](https://www.postgresql.org/)
 
-Other dependencies: body-parser, knex
+Other dependencies: [Body Parser](https://github.com/expressjs/body-parser), [Dotenv](https://github.com/bkeepers/dotenv), [Knex](http://knexjs.org/), [Morgan](https://github.com/expressjs/morgan), [Node-Sass](https://github.com/sass/node-sass), [Nodemon](https://nodemon.io/)
 
 ## Getting Started
 
@@ -32,11 +32,11 @@ Other dependencies: body-parser, knex
 
 ## Authors
 
-* [https://github.com/camlee23](https://github.com/camlee23)
+* [https://github.com/camli23](https://github.com/camli23)
 * [https://github.com/kaichesterni](https://github.com/kaichesterni)
 * [https://github.com/marshalldanel](https://github.com/marshalldanel/)
 
 
 ## Acknowledgments
 
-* The good folks at LHL
+* The good folks at [Lighthouse Labs](https://www.lighthouselabs.ca/)

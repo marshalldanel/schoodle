@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <title>Schoodle</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <% include partials/_header %>
+    <style>
+      .true {
+        background-color: green;
+      }
+      .false {
+        background-color: red;
+      }
+    </style>
+  </head>
+
+  <body>
+    <main class='event-jumbo'>
+      <div>
+        <h1><%= eventname %></h1>
+
+        <table class='poll-results'>
+          <tr>
+            <% times.forEach(time => {
+              <th><%= time %></th>
+            })
+          </tr>
+          <% votes.forEach(vote => { %>
+            <% vote.forEach(check => {
+              <% if (check) { %>
+                <td class='true'></td>
+              <% } else { %>
+                <td class='false'></td>
+              <% } %>
+            <% }) %>
+          <% }) %>
+        </table>
+      </div>
+    </main>
+  </body>
+</html>

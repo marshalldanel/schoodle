@@ -32,8 +32,8 @@ module.exports = (knex) => {
               admin_id: admin.id
             });
         })
-        .then(function () {
-          res.json({ success: true, message: 'ok' });
+        .then(() => {
+          res.redirect(`/event/${randEvent}/${randAdmin}/admin`);
         });
     });
   });

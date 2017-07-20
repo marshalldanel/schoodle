@@ -51,17 +51,19 @@ app.post('/event', (req, res) => {
         name: req.body.admin_name,
         email: req.body.admin_email
       })
-      .then(() => {
+      .returning('*')
+      .then(([admin]) => {
         return knex('events')
           .insert({
             title: req.body.title,
             location: req.body.location,
             description: req.body.description,
-            event_date: req.body.date
-          })
-          .then(function () {
-            res.json({ success: true, message: 'ok' });
+            event_date: req.body.date,
+            admin_id: admin.id
           });
+      })
+      .then(function () {
+        res.json({ success: true, message: 'ok' });
       });
   });
 });

@@ -4,51 +4,10 @@
     <title>Schoodle</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <% include partials/_header %>
-    <style>
-      html, body {
-        background-color: #e4ebf1;
-        font-family: avenir, sans-serif;
-      }
-      main {
-        background-color: #3798d4;
-        height: 500px;
-        padding: 1em;
-        text-align: center;
-      }
-      @media screen and (min-width:800px) {
-        main {
-          border-radius: 10px;
-          margin: auto;
-          margin-top: 7em;
-          padding: 3em;
-          text-align: center;
-          width: 50%;
-        }
-      }
-      main div h1 {
-        color: white;
-      }
-      form input {
-        background-color: #3798d4;
-        border: none;
-        border-bottom: 1px solid white;
-        color: white;
-        font-size: 20px;
-        width: 70%
-      }
-      form button {
-        background-color: #e4ebf1;
-        border: none;
-        border-radius: 5px;
-        color: #1b63ad;
-        font-size: 20px;
-        width: 25%
-      }
-    </style>
   </head>
 
   <body>
-    <main>
+    <main class="new-event-jumbo">
       <div>
         <h1>New Event</h1>
         <form method='POST' action='/event/new'>

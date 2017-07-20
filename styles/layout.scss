@@ -8,6 +8,24 @@ button {
   width: 250px;
 }
 
+form button {
+  background-color: #e4ebf1;
+  border: none;
+  border-radius: 5px;
+  color: #1b63ad;
+  font-size: 20px;
+  width: 25%
+}
+
+form input {
+  background-color: #3798d4;
+  border: none;
+  border-bottom: 1px solid white;
+  color: white;
+  font-size: 20px;
+  width: 70%
+}
+
 html {
   background-color: #e4ebf1;
   font-family: avenir, sans-serif;
@@ -15,7 +33,6 @@ html {
 
 main {
   background-color: #3798d4;
-  height: 400px;
   padding: 4.5em;
   text-align: center;
 
@@ -29,5 +46,16 @@ main {
 @media screen and (min-width: 650px) {
   main {
     padding: 7.5em;
+  }
+}
+
+@media screen and (min-width:800px) {
+  .new-event-jumbo {
+    border-radius: 10px;
+    margin: auto;
+    margin-top: 7em;
+    padding: 3em;
+    text-align: center;
+    width: 50%;
   }
 }

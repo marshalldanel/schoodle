@@ -16,7 +16,8 @@ const knexLogger  = require('knex-logger');
 
 // Seperated Routes for each Resource
 // const usersRoutes = require('./routes/users');
-const newRoutes = require('./routes/new');
+const newRoutes   = require('./routes/new');
+const eventRoutes = require('./routes/eventView');
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -38,37 +39,7 @@ app.use(express.static('public'));
 
 // Mount all resource routes
 app.use('/', newRoutes(knex));
-
-
-// GET view event page
-app.get('/event/:longid', (req, res) => {
-  const longid = req.params.longid;
-  const adminid = longid.substr(0, 8);
-  const eventid = longid.substr(8, 8);
-  const templateVars = {
-    adminid,
-    eventid
-  };
-  if (adminid.length < 8 || eventid.length < 8) {
-    res.status(404).send('Error 404 - Page not found');
-  } else {
-    res.render('event', templateVars);
-  }
-});
-
-// POST edit event
-// app.post('/event/:longid/edit', (req, res) => {
-//   const longid = req.params.longid;
-//   const adminid = longid.substr(0, 8);
-//   const eventid = longid.substr(8, 8);
-// });
-
-// POST delete event
-// app.post('/event/:longid/delete', (req, res) => {
-//   const longid = req.params.longid;
-//   const adminid = longid.substr(0, 8);
-//   const eventid = longid.substr(8, 8);
-// });
+app.use('/', eventRoutes(knex));
 
 // Home page
 app.get('/', (req, res) => {

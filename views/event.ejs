@@ -7,20 +7,20 @@
   </head>
 
   <body>
-    <main class="event-jumbo">
+    <main class='event-jumbo'>
       <div>
         <h1>Your Event</h1>
         <h2>Event ID: <%= eventid %></h2>
         <h2>Admin ID: <%= adminid %></h2>
 
-        <div class="event-links">
-          <p>Participation link<br><a href="/event/<%= eventid %>">Send this to your friends</a></p>
-          <p>Administration link<br><a href="/event/<%= eventid + adminid %>">The page you're on right now!</a></p>
+        <div class='event-links'>
+          <p>Participation link<br><a href='/event/<%= eventid %>'>Send this to your friends</a></p>
+          <p>Administration link<br><a href='/event/<%= eventid + adminid %>'>The page you're on right now!</a></p>
         </div>
 
-        <div class="event-buttons">
-          <form method="GET" action="/event/<%= eventid + adminid %>/edit"><button>Edit</button></form><br>
-          <form method="POST" action="/event/<%= eventid + adminid %>/delete"><button>Delete</button></form>
+        <div class='event-buttons'>
+          <form method='GET' action='/event/<%= eventid + adminid %>/edit'><button>Edit</button></form><br>
+          <form method='POST' action='/event/<%= eventid + adminid %>/delete'><button>Delete</button></form>
         </div>
       </div>
     </main>

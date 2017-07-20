@@ -15,7 +15,7 @@ const morgan      = require('morgan');
 const knexLogger  = require('knex-logger');
 
 // Seperated Routes for each Resource
-const usersRoutes = require('./routes/users');
+// const usersRoutes = require('./routes/users');
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -36,19 +36,34 @@ app.use('/styles', sass({
 app.use(express.static('public'));
 
 // Mount all resource routes
-app.use('/event/new', usersRoutes(knex));
+// app.use('/event/new', usersRoutes(knex));
 
 // Create new event page
 app.get('/event/new', (req, res) => {
   res.render('new');
 });
 
+// POST event/admin data to db
 app.post('/event', (req, res) => {
-  knex('events')
-    .insert({title: req.body.title, location: req.body.location, description: req.body.description})
-    .then(function () {
-      res.json({ success: true, message: 'ok' });
-    });
+  knex.transaction(() => {
+    return knex('admins')
+      .insert({
+        name: req.body.admin_name,
+        email: req.body.admin_email
+      })
+      .then(() => {
+        return knex('events')
+          .insert({
+            title: req.body.title,
+            location: req.body.location,
+            description: req.body.description,
+            event_date: req.body.date
+          })
+          .then(function () {
+            res.json({ success: true, message: 'ok' });
+          });
+      });
+  });
 });
 
 // Home page

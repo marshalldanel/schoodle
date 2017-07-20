@@ -8,6 +8,15 @@ button {
   width: 250px;
 }
 
+.event-buttons button {
+  width: 40%;
+}
+
+.event-links {
+  color: white;
+  font-size: 18px;
+}
+
 form button {
   background-color: #e4ebf1;
   border: none;
@@ -50,12 +59,15 @@ main {
 }
 
 @media screen and (min-width:800px) {
-  .new-event-jumbo {
+  .new-event-jumbo, .event-jumbo {
     border-radius: 10px;
     margin: auto;
     margin-top: 7em;
     padding: 3em;
     text-align: center;
     width: 50%;
+  }
+  .event-buttons button {
+    width: 25%;
   }
 }

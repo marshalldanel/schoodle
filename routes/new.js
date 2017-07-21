@@ -30,7 +30,19 @@ module.exports = (knex) => {
               event_date: req.body.date,
               event_code: randEvent,
               admin_id: admin.id
+            })
+            .returning('*')
+            .then(([event]) => {
+              return knex('times')
+                .insert({
+                  time1: req.body.time1,
+                  time2: req.body.time2,
+                  time3: req.body.time3,
+                  time4: req.body.time4,
+                  event_id: event.id
+                });
             });
+           
         })
         .then(() => {
           res.redirect(`/event/${randEvent}/${randAdmin}/admin`);

@@ -21,6 +21,22 @@ module.exports = (knex) => {
     }
   });
 
+  router.post('/event/:event_code/:admin_code/delete', (req, res) => {
+    const eventid = req.params.event_code;
+    const adminid = req.params.admin_code;
+    knex.select('event_code').from('events')
+      .where('event_code', eventid)
+      .del()
+      .then(() => {
+        knex.select('admin_code').from('admins')
+          .where('admin_code', adminid)
+          .del()
+          .then(() => {
+            res.redirect('/');
+          });
+      });
+  });
+
   return router;
 };
 

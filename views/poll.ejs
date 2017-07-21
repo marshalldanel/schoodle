@@ -21,12 +21,12 @@
 
         <table class='poll-results'>
           <tr>
-            <% times.forEach(time => {
+            <% times.forEach(time => { %>
               <th><%= time %></th>
-            })
+           <% }) %>
           </tr>
           <% votes.forEach(vote => { %>
-            <% vote.forEach(check => {
+            <% vote.forEach(check => { %>
               <% if (check) { %>
                 <td class='true'></td>
               <% } else { %>

@@ -2,16 +2,7 @@
 <html lang='en'>
   <head>
     <title>Schoodle</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
     <% include partials/_header %>
-    <style>
-      .true {
-        background-color: green;
-      }
-      .false {
-        background-color: red;
-      }
-    </style>
   </head>
 
   <body>
@@ -23,34 +14,27 @@
         <table class='poll-results'>
           <tr>
             <th>Name</th>
-            <% times.forEach(time => {
+            <% times.forEach(time => { %>
               <th><%= time %></th>
-            })
+            <% }); %>
+            <th>Edit</th>
             <th>Delete</th>
           </tr>
-
-          <tr>
-            <% votes.forEach(vote => { %>
-              <td><% vote.name %></td>
-              <% vote.forEach(check => {
-                <% if (check) { %>
-                  <td class='true'></td>
+          
+          <% for (let person in votes) { %>
+            <tr>
+              <td><%= person %></td>
+              <% votes[person].forEach((vote) => { %>
+                <% if (vote) { %>
+                  <td class='vote true'>Y</td>
                 <% } else { %>
-                  <td class='false'></td>
+                  <td class='vote false'>N</td>
                 <% } %>
-                <td><a class='delete-vote'>Delete</a></td>
               <% }) %>
-            <% }) %>
-          </tr>
-
-          <tr>
-            <form>
-              <td><input type='text' placeholder='Your name'></td>
-              <% times.forEach(() => { %>
-                <td><input type='checkbox'></td>
-              <% }) %>
-            <form>
-          </tr>
+              <td><button class='edit-vote' person='<%= person %>'><i class="fa fa-pencil"/></button></form></td>
+              <td><button class='delete-vote' person='<%= person %>'><i class="fa fa-trash-o"/></button></form></td>
+            </tr>
+          <% } %>
         </table>
       </div>
     </main>

@@ -10,8 +10,12 @@ module.exports = (knex) => {
   router.get('/event/:eventid', (req, res) => {
     const templateVars = {
       eventname: 'Knife Party', // name of event from db
-      times: ['12', '4', '5'], // array of available times
-      votes: [[false, true, true]] // array containing each vote, which are also arrays
+      eventdate: '2000-07-27',
+      times: ['12:31', '04:11', '15:49', '19:12'], // array of available times
+      votes: { 
+        James: [true, false, true, false],
+        Arnold: [false, false, true, true]
+      } // object containing each vote, which are arrays
     };
     res.render('poll.ejs', templateVars);
   });

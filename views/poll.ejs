@@ -18,22 +18,39 @@
     <main class='event-jumbo'>
       <div>
         <h1><%= eventname %></h1>
+        <h2><%= eventdate %></h2>
 
         <table class='poll-results'>
           <tr>
-            <% times.forEach(time => { %>
+            <th>Name</th>
+            <% times.forEach(time => {
               <th><%= time %></th>
-           <% }) %>
+            })
+            <th>Delete</th>
           </tr>
-          <% votes.forEach(vote => { %>
-            <% vote.forEach(check => { %>
-              <% if (check) { %>
-                <td class='true'></td>
-              <% } else { %>
-                <td class='false'></td>
-              <% } %>
+
+          <tr>
+            <% votes.forEach(vote => { %>
+              <td><% vote.name %></td>
+              <% vote.forEach(check => {
+                <% if (check) { %>
+                  <td class='true'></td>
+                <% } else { %>
+                  <td class='false'></td>
+                <% } %>
+                <td><a class='delete-vote'>Delete</a></td>
+              <% }) %>
             <% }) %>
-          <% }) %>
+          </tr>
+
+          <tr>
+            <form>
+              <td><input type='text' placeholder='Your name'></td>
+              <% times.forEach(() => { %>
+                <td><input type='checkbox'></td>
+              <% }) %>
+            <form>
+          </tr>
         </table>
       </div>
     </main>

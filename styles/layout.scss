@@ -5,7 +5,7 @@ button {
   color: white;
   font-size: 20px;
   height: 60px;
-  width: 250px;
+  width: 90%;
 }
 
 .event-buttons button {
@@ -23,7 +23,6 @@ form button {
   border-radius: 5px;
   color: #1b63ad;
   font-size: 20px;
-  width: 25%
 }
 
 form input {
@@ -32,11 +31,11 @@ form input {
   border-bottom: 1px solid white;
   color: white;
   font-size: 20px;
-  width: 70%
+  width: 100%;
 }
 
 html {
-  background-color: #e4ebf1;
+  background-color: #3798d4;
   font-family: avenir, sans-serif;
 }
 
@@ -59,6 +58,12 @@ main {
 }
 
 @media screen and (min-width:800px) {
+  .event-buttons button {
+    width: 25%;
+  }
+  html, body {
+    background-color: #e4ebf1;
+  }
   .new-event-jumbo, .event-jumbo {
     border-radius: 10px;
     margin: auto;
@@ -67,7 +72,13 @@ main {
     text-align: center;
     width: 50%;
   }
-  .event-buttons button {
-    width: 25%;
-  }
+}
+
+.new-event-jumbo label {
+  color: white;
+  font-size: 18px;
+}
+
+.input-times {
+  background-color: #3798d4;
 }

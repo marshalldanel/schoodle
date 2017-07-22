@@ -17,7 +17,7 @@ const knexLogger  = require('knex-logger');
 // Seperated Routes for each Resource
 // const usersRoutes = require('./routes/users');
 const newRoutes   = require('./routes/new');
-const eventRoutes = require('./routes/eventView');
+const adminRoutes = require('./routes/admin');
 const pollRoutes  = require('./routes/poll');
 const editRoutes  = require('./routes/edit');
 
@@ -41,7 +41,7 @@ app.use(express.static('public'));
 
 // Mount all resource routes
 app.use('/', newRoutes(knex));
-app.use('/', eventRoutes(knex));
+app.use('/', adminRoutes(knex));
 app.use('/', pollRoutes(knex));
 app.use('/', editRoutes(knex));
 

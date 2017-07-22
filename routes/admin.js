@@ -14,21 +14,30 @@ module.exports = (knex) => {
       adminid,
       eventid
     };
-    if (adminid.length < 8 || eventid.length < 8) {
-      res.status(404).send('Error 404 - Page not found');
-    } else {
+
+    knex('events').select('*').where('event_code', eventid).then((rows) => {
+      if (rows[0].deleted_at !== null) {
+        return Promise.reject(err);
+      }
+    }).then(() => {
+      if (adminid.length < 8 || eventid.length < 8) {
+        return Promise.reject(err);
+      }
+    }).then(() => {
       res.render('event', templateVars);
-    }
+    }).catch((err) => {
+      res.status(404).send('Error 404: Doesn\'t exist');
+    });
   });
 
   // POST update 'deleted_at' from null to timestamp
   router.post('/event/:event_code/:admin_code/delete', (req, res) => {
     const eventid = req.params.event_code;
     const adminid = req.params.admin_code;
-    
+
+
     knex('events').select(1).where('event_code', eventid).then((rows) => {
       if (!rows.length) {
-        console.log('first error');
         throw new Error('This event doesn\'t exist!');
       }
     }).then(() => {

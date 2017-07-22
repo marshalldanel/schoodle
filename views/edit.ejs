@@ -10,7 +10,7 @@
     <main class='new-event-jumbo'>
       <div>
         <h1>Edit Your Event</h1>
-        <form method='POST' action='/event/:eventid/:admin_code/edit'>
+        <form method='POST' action='/event/<%=event.event_code%>/<%= event.admin_code%>/edit'>
           <input name='title' type='text' value='<%=event.title%>' maxlength='32'><br><br>
           <input name='location' type='text' value='<%=event.location%>' maxlength='64'><br><br>
           <input name='description' type='text' value='<%=event.description%>' maxlength='256'><br><br>

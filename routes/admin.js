@@ -26,7 +26,7 @@ module.exports = (knex) => {
     }).then(() => {
       res.render('event', templateVars);
     }).catch((err) => {
-      res.status(404).send('Error 404: Doesn\'t exist');
+      res.status(404).send('Page doesn\'t exist!');
     });
   });
 
@@ -50,7 +50,7 @@ module.exports = (knex) => {
       }).then(() => {
         res.redirect('/');
       }).catch(() => {
-        res.status(404).send('Error 404: Doesn\'t exist');
+        res.status(404).send('Page doesn\'t exist!');
       });
     });
   });

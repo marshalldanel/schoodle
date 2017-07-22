@@ -12,31 +12,8 @@ button {
   width: 40%;
 }
 
-.poll-results {
+.event-details p {
   color: white;
-  margin: auto;
-  padding: 0;
-  text-align: center;
-  
-  button {
-    border-radius: 2px;
-    height: 30px;
-    width: 100%;
-  }
-  .false {
-    background-color: #0f2849;
-  }
-  .true {
-    background-color: #d2ddeb;
-    color: #123;
-  }
-  th, td {
-    padding: 0;
-    width: 10%;
-  }
-  .vote {
-    border-radius: 2px;
-  }
 }
 
 .event-links {
@@ -108,4 +85,31 @@ main {
 .new-event-jumbo label {
   color: white;
   font-size: 18px;
+}
+
+.poll-results {
+  color: white;
+  margin: auto;
+  padding: 0;
+  text-align: center;
+  
+  button {
+    border-radius: 2px;
+    height: 30px;
+    width: 100%;
+  }
+  .false {
+    background-color: #0f2849;
+  }
+  .true {
+    background-color: #d2ddeb;
+    color: #123;
+  }
+  th, td {
+    padding: 0;
+    width: 10%;
+  }
+  .vote {
+    border-radius: 2px;
+  }
 }

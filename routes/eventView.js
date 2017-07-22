@@ -21,37 +21,29 @@ module.exports = (knex) => {
     }
   });
 
+  // POST update 'deleted_at' from null to timestamp
   router.post('/event/:event_code/:admin_code/delete', (req, res) => {
     const eventid = req.params.event_code;
     const adminid = req.params.admin_code;
-    knex.select('event_code').from('events')
-      .where('event_code', eventid)
-      .del()
-      .then(() => {
-        knex.select('admin_code').from('admins')
-          .where('admin_code', adminid)
-          .del()
-          .then(() => {
-            res.redirect('/');
-          });
+    
+    knex('events').select(1).where('event_code', eventid).then((rows) => {
+      if (!rows.length) {
+        console.log('first error');
+        throw new Error('This event doesn\'t exist!');
+      }
+    }).then(() => {
+      return knex('events').select('*').where('event_code', eventid).then((rows) => {
+        if (rows[0].deleted_at !== null) {
+          return Promise.reject(err);
+        }
+      }).then(() => {
+        return knex('events').where('event_code', eventid).update({deleted_at: new Date});
+      }).then(() => {
+        res.redirect('/');
+      }).catch(() => {
+        res.status(404).send('Error 404: Doesn\'t exist');
       });
+    });
   });
-
   return router;
 };
-
-
-
-// POST edit event
-// app.post('/event/:longid/edit', (req, res) => {
-//   const longid = req.params.longid;
-//   const adminid = longid.substr(0, 8);
-//   const eventid = longid.substr(8, 8);
-// });
-
-// POST delete event
-// app.post('/event/:longid/delete', (req, res) => {
-//   const longid = req.params.longid;
-//   const adminid = longid.substr(0, 8);
-//   const eventid = longid.substr(8, 8);
-// });

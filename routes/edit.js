@@ -56,7 +56,7 @@ module.exports = (knex) => {
           event_date: req.body.date
         })
         .then(() => {
-          return knex('times').join('events', 'event_id', '=', 'id').where('event_code', req.params.event_code)
+          return knex('times').join('events', 'event_id', '=', 'id')
             .update({
               time1: req.body.time1,
               time2: req.body.time2,

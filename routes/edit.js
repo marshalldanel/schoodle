@@ -2,7 +2,7 @@
 
 const express = require('express');
 const router = express.Router();
-const randStr = require('../public/scripts/makeCode');
+const randStr = require('../public/scripts/make-code');
 const moment = require('moment');
 
 module.exports = (knex) => {

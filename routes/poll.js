@@ -141,5 +141,27 @@ module.exports = (knex) => {
   //   });
   // });
 
+  router.post('/event/:eventid/new', (req, res) => {
+    knex.transaction(() => {
+      return knex('events').select('id').where('event_code', req.params.eventid)
+        .then((row) => {
+          return knex('polls')
+            .insert({
+              event_id: row[0].id,
+              name: req.body.voter,
+              time1: req.body.time1,
+              time2: req.body.time2,
+              time3: req.body.time3,
+              time4: req.body.time4
+  
+            });
+        });
+    }).then(() => {
+      res.redirect(`/event/${req.params.eventid}`);
+    }).catch(() => {
+      res.status(404).send('Error, try again!');
+    });
+  });
+
   return router;
 };

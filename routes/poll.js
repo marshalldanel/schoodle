@@ -33,8 +33,12 @@ module.exports = (knex) => {
 
         knex('polls').select('*').where('event_id', data.id).then(votes => {
           templateVars.votes = {};
+          templateVars.deleted = {};
+          console.log(votes);
           votes.forEach(vote => {
+            console.log(vote.name);
             templateVars.votes[vote.name] = [vote.time1, vote.time2, vote.time3, vote.time4];
+            templateVars.deleted[vote.name] = vote.deleted_at;
           });
           res.render('poll.ejs', templateVars);
         });

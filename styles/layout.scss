@@ -87,6 +87,33 @@ main {
   font-size: 18px;
 }
 
+.new-vote-composer {
+  background-color: #d2ddeb;
+  border-radius: 5px;
+  display: none;
+  padding: 5px;
+  text-align: center;
+  
+  button {
+    height: 100%;
+    padding: 3px;
+    width: 100%;
+  }
+  
+  input {
+    background-color: inherit;
+    color: #123;
+  }
+  
+  table {
+    width: 100%;
+    
+    td {
+      padding: 5px;
+    }
+  }
+}
+
 .poll-results {
   color: white;
   margin: auto;

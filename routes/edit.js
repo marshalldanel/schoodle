@@ -18,7 +18,7 @@ module.exports = (knex) => {
     }).then(() => {
       return knex('events').select('*').where('event_code', event_code_b).then((rows) => {
         if (rows[0].deleted_at !== null) {
-          return Promise.reject(new ERROR('This event has been deleted!'));
+          return Promise.reject(new Error('This event has been deleted!'));
         }
       }).then(() => {
         return knex('events').select()

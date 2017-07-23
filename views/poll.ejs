@@ -46,6 +46,24 @@
             </tr>
           <% } %>
         </table>
+        
+        <br>
+        <div>
+          <div><button class='new-vote-toggle'>Vote</button></div><br>
+          <form method='POST' action='/event/<%= eventid %>/new' class='new-vote-composer'>
+            <table>
+              <td><input name='voter' placeholder='Your name'></td>
+              <% times.forEach((time, i) => { %>
+                <% if (time) { %>
+                  <td>
+                    <label for='time<%= i + 1 %>'><%= time %></label><input type='checkbox' name='time<%= i + 1 %>' id='time<%= i + 1 %>'>
+                  </td>
+                <% } %>
+              <% }) %>
+              <td><button>Save</button></td>
+            </table>
+          </form>
+        </div>
       </div>
     </main>
   </body>

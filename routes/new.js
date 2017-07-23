@@ -1,7 +1,7 @@
-"use strict";
+'use strict';
 
 const express = require('express');
-const router  = express.Router();
+const router = express.Router();
 const randStr = require('../public/scripts/makeCode');
 
 module.exports = (knex) => {
@@ -42,7 +42,7 @@ module.exports = (knex) => {
                   event_id: event.id
                 });
             });
-           
+
         })
         .then(() => {
           res.redirect(`/event/${randEvent}/${randAdmin}/admin`);

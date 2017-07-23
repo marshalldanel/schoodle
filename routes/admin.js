@@ -1,7 +1,7 @@
 'use strict';
 
 const express = require('express');
-const router  = express.Router();
+const router = express.Router();
 const randStr = require('../public/scripts/makeCode');
 
 module.exports = (knex) => {
@@ -17,11 +17,11 @@ module.exports = (knex) => {
 
     knex('events').select('*').where('event_code', eventid).then((rows) => {
       if (rows[0].deleted_at !== null) {
-        return Promise.reject(err);
+        return Promise.reject(new Error());
       }
     }).then(() => {
       if (adminid.length < 8 || eventid.length < 8) {
-        return Promise.reject(err);
+        return Promise.reject(new Error('Invalid URL'));
       }
     }).then(() => {
       res.render('event', templateVars);
@@ -43,10 +43,12 @@ module.exports = (knex) => {
     }).then(() => {
       return knex('events').select('*').where('event_code', eventid).then((rows) => {
         if (rows[0].deleted_at !== null) {
-          return Promise.reject(err);
+          return Promise.reject(new Error('Event was deleted'));
         }
       }).then(() => {
-        return knex('events').where('event_code', eventid).update({deleted_at: new Date});
+        return knex('events').where('event_code', eventid).update({
+          deleted_at: new Date()
+        });
       }).then(() => {
         res.redirect('/');
       }).catch(() => {

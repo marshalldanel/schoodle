@@ -1,7 +1,7 @@
 'use strict';
 
 const express = require('express');
-const router  = express.Router();
+const router = express.Router();
 const randStr = require('../public/scripts/makeCode');
 
 module.exports = (knex) => {
@@ -17,7 +17,7 @@ module.exports = (knex) => {
         res.status(404).send('Page was deleted!');
         return;
       }
-      
+
       const data = raw[0];
       const templateVars = {
         address: data.location,
@@ -26,11 +26,11 @@ module.exports = (knex) => {
         eventdate: data.event_date,
         eventid: req.params.eventid
       };
-      
+
       knex('times').select('*').where('event_id', data.id).then(raw => {
         const times = raw[0];
         templateVars.times = [times.time1, times.time2, times.time3, times.time4];
-        
+
         knex('polls').select('*').where('event_id', data.id).then(votes => {
           templateVars.votes = {};
           votes.forEach(vote => {
@@ -42,7 +42,7 @@ module.exports = (knex) => {
     });
   });
 
-// NOT COMPLETED
+  // NOT COMPLETED
   // router.post('/event/:eventid/delete', (req, res) => {
   //   const eventid = req.params.eventid;
   //   return knex('events').select('*')
@@ -54,7 +54,7 @@ module.exports = (knex) => {
   //       return knex('polls').select('*')
   //         .where('name', row[].name)
   //         .then(() => {
-  //           this.closest("tr").addClass("hidden");
+  //           this.closest('tr').addClass('hidden');
   //           res.redirect('/event/:eventid');
   //         });
   //     }).catch((err) => {
@@ -63,7 +63,7 @@ module.exports = (knex) => {
   // });
 
 
-// NOT COMPLETED
+  // NOT COMPLETED
   // router.get('/event/:eventid/edit', (req, res) => {
   //   const eventid = req.params.eventid;
   //   knex('events').select().where('event_code', eventid).then((rows) => {
@@ -91,7 +91,7 @@ module.exports = (knex) => {
   //   });
   // });
 
-// NOT COMPLETED
+  // NOT COMPLETED
   // router.post('/event/:eventid/update', (req, res) => {
   //   let eventid = req.params.eventid;
   //   knex.transaction(() => {
@@ -121,4 +121,3 @@ module.exports = (knex) => {
 
   return router;
 };
-

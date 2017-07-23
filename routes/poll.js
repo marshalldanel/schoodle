@@ -52,7 +52,7 @@ module.exports = (knex) => {
   //       console.log(row);
   //       console.log(votes[person]);
   //       return knex('polls').select('*')
-  //         .where('name', row[].name)
+  //         .where('name', )
   //         .then(() => {
   //           this.closest('tr').addClass('hidden');
   //           res.redirect('/event/:eventid');
@@ -61,6 +61,23 @@ module.exports = (knex) => {
   //       res.status(404).send('Attendee doesn\'t exist');
   //     });
   // });
+
+  router.post('/event/:eventid/delete', (req, res) => {
+      return knex('polls').select('name').where('name', req.body.person).then((rows) => {
+        if (rows[0].deleted_at !== null) {
+          return Promise.reject(new Error('Event was deleted'));
+        }
+      }).then(() => {
+        return knex('events').where('event_code', eventid).update({
+          deleted_at: new Date()
+        });
+      }).then(() => {
+        res.redirect('/');
+      }).catch(() => {
+        res.status(404).send('Page doesn\'t exist!');
+      });
+    });
+  });
 
 
   // NOT COMPLETED

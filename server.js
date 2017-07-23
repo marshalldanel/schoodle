@@ -9,6 +9,9 @@ const bodyParser  = require('body-parser');
 const sass        = require('node-sass-middleware');
 const app         = express();
 
+const cookieSession = require('cookie-session');
+const flash = require('connect-flash');
+
 const knexConfig  = require('./knexfile');
 const knex        = require('knex')(knexConfig[ENV]);
 const morgan      = require('morgan');
@@ -28,6 +31,16 @@ app.use(morgan('dev'));
 
 // Log knex SQL queries to STDOUT as well
 app.use(knexLogger(knex));
+
+// app.use(cookieSession({
+//   secret: process.env.SESSION_SECRET || 'development'
+// }));
+// app.use(flash());
+
+// app.use(function(req, res, next) {
+//   res.locals.errors = req.flash('errors');
+//   next();
+// });
 
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));

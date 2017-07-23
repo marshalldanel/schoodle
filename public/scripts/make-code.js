@@ -4,9 +4,9 @@ function makeCode() {
   const possible = alphabet + alphabet.toLowerCase() + '0123456789';
 
   for (let i = 0; i < 8; i++)
-    text += possible.charAt(Math.floor(Math.random() * possible.length));
+    output += possible.charAt(Math.floor(Math.random() * possible.length));
 
-  return text;
+  return output;
 }
 
 module.exports = makeCode;

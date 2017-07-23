@@ -1,18 +1,30 @@
-'use strict';
+"use strict";
 
 const express = require('express');
-const router = express.Router();
+const router  = express.Router();
 const randStr = require('../public/scripts/make-code');
 
 module.exports = (knex) => {
 
   router.get('/event/new', (req, res) => {
-    res.render('new');
+    res.render('new', req.body);
   });
 
   router.post('/event/new', (req, res) => {
     let randAdmin = randStr();
     let randEvent = randStr();
+
+    if (!req.body.title) {
+      res.status(404).send('Must include a title!');
+      return;
+    } else if (!req.body.admin_name || !req.body.admin_email) {
+      res.status(404).send('Must include name and email!');
+      return;
+    } else if (!req.body.date || !req.body.time1) {
+      res.status(404).send('Must include a date and one time!');
+      return;
+    }
+
     knex.transaction(() => {
       return knex('admins')
         .insert({
@@ -42,10 +54,13 @@ module.exports = (knex) => {
                   event_id: event.id
                 });
             });
-
+           
         })
         .then(() => {
           res.redirect(`/event/${randEvent}/${randAdmin}/admin`);
+        })
+        .catch(() => {
+          res.status(404).send('Error, try again!');
         });
     });
   });

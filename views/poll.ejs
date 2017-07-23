@@ -41,8 +41,18 @@
                   <td class='vote false'>N</td>
                 <% } %>
               <% }) %>
-              <td><form method='post' action='/something/something/edit'><button class='edit-vote' person='<%= person %>'><i class="fa fa-pencil"/></button></form></td>
-              <td><form method='post' action='/something/something/delete'><button class='delete-vote' person='<%= person %>'><i class="fa fa-trash-o"/></button></form></td>
+              <td>
+                <form method='post' action='/something/something/edit'>
+                  <input class='hide' name='person' value='<%= person %>'>
+                  <button class='edit-vote' person='<%= person %>'><i class='fa fa-pencil'></i></button>
+                </form>
+              </td>
+              <td>
+                <form method='post' action='/event/<%= eventid %>/delete'>
+                  <input class='hide' name='person' value='<%= person %>'>
+                  <button class='delete-vote' person='<%= person %>'><i class='fa fa-trash-o' aria-hidden='true'></i></button>
+                </form>
+              </td>
             </tr>
           <% } %>
         </table>

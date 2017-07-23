@@ -63,19 +63,22 @@ module.exports = (knex) => {
   // });
 
   router.post('/event/:eventid/delete', (req, res) => {
-    return knex('polls').select('name').where('name', req.body.person).then((rows) => {
-      if (rows[0].deleted_at !== null) {
-        return Promise.reject(new Error('Event was deleted'));
-      }
-    }).then(() => {
-      return knex('events').where('event_code', eventid).update({
-        deleted_at: new Date()
+    return knex('events').select('id').where('event_code', req.params.eventid)
+      .then((row) => {
+        console.log(row[0].id);
+        return knex('polls').select()
+          .where({
+            event_id: row[0].id,
+            name: req.body.person})
+          .update({
+            deleted_at: new Date()
+          });
+      }).then(() => {
+        res.redirect(`/event/${req.params.eventid}`);
+      }).catch((e) => {
+        res.status(404).send(e);
+          
       });
-    }).then(() => {
-      res.redirect('/');
-    }).catch(() => {
-      res.status(404).send('Page doesn\'t exist!');
-    });
   });
 
 
@@ -118,6 +121,9 @@ module.exports = (knex) => {
   //       .where('name', person)
   //       .then(rows => {
   //         return knex('polls').where('event_id', events.id)
+  //           if (rows.deleted_at !== null) {
+  //             return Promise.reject(new Error('Event was deleted'));
+  //           }
   //           .update({
   //             // Update votes?
   //             time1: req.body.time1,

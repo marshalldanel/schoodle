@@ -42,14 +42,16 @@
                 <% } %>
               <% }) %>
               <td>
-                <form method='post' action='/something/something/edit'>
+                <form method='post' action='/event/<%= eventid %>/edit'>
                   <input class='hide' name='person' value='<%= person %>'>
+                  <input class='hide' name='eventid' value='<%= eventid %>'>
                   <button class='edit-vote' person='<%= person %>'><i class='fa fa-pencil'></i></button>
                 </form>
               </td>
               <td>
                 <form method='post' action='/event/<%= eventid %>/delete'>
                   <input class='hide' name='person' value='<%= person %>'>
+                  <input class='hide' name='eventid' value='<%= eventid %>'>
                   <button class='delete-vote' person='<%= person %>'><i class='fa fa-trash-o' aria-hidden='true'></i></button>
                 </form>
               </td>

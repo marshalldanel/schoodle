@@ -32,30 +32,32 @@
           </tr>
           
           <% for (let person in votes) { %>
-            <tr>
-              <td class='vote true'><%= person %></td>
-              <% votes[person].forEach((vote) => { %>
-                <% if (vote) { %>
-                  <td class='vote true'>Y</td>
-                <% } else { %>
-                  <td class='vote false'>N</td>
-                <% } %>
-              <% }) %>
-              <td>
-                <form method='post' action='/event/<%= eventid %>/edit'>
-                  <input class='hide' name='person' value='<%= person %>'>
-                  <input class='hide' name='eventid' value='<%= eventid %>'>
-                  <button class='edit-vote' person='<%= person %>'><i class='fa fa-pencil'></i></button>
-                </form>
-              </td>
-              <td>
-                <form method='post' action='/event/<%= eventid %>/delete'>
-                  <input class='hide' name='person' value='<%= person %>'>
-                  <input class='hide' name='eventid' value='<%= eventid %>'>
-                  <button class='delete-vote' person='<%= person %>'><i class='fa fa-trash-o' aria-hidden='true'></i></button>
-                </form>
-              </td>
-            </tr>
+            <% if (!deleted[person]) { %>
+              <tr>
+                <td class='vote true'><%= person %></td>
+                <% votes[person].forEach((vote) => { %>
+                  <% if (vote) { %>
+                    <td class='vote true'>Y</td>
+                  <% } else { %>
+                    <td class='vote false'>N</td>
+                  <% } %>
+                <% }) %>
+                <td>
+                  <form method='post' action='/event/<%= eventid %>/edit'>
+                    <input class='hide' name='person' value='<%= person %>'>
+                    <input class='hide' name='eventid' value='<%= eventid %>'>
+                    <button class='edit-vote' person='<%= person %>'><i class='fa fa-pencil'></i></button>
+                  </form>
+                </td>
+                <td>
+                  <form method='post' action='/event/<%= eventid %>/delete'>
+                    <input class='hide' name='person' value='<%= person %>'>
+                    <input class='hide' name='eventid' value='<%= eventid %>'>
+                    <button class='delete-vote' person='<%= person %>'><i class='fa fa-trash-o' aria-hidden='true'></i></button>
+                  </form>
+                </td>
+              </tr>
+            <% } %>
           <% } %>
         </table>
         

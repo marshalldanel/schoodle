@@ -14,7 +14,7 @@ Event Page
 
 ## Project Stack
 
-Front-end: [Bootstrap](http://getbootstrap.com/), [Sass](http://sass-lang.com/), [JS](https://www.javascript.com/), [jQuery](http://jquery.com/)
+Front-end:[Sass](http://sass-lang.com/), [JS](https://www.javascript.com/), [jQuery](http://jquery.com/), Insipired by [Bootstrap](http://getbootstrap.com/)
 
 Web Server: [Node JS](https://nodejs.org/en/)
 
@@ -22,7 +22,7 @@ Middleware: [Express JS](http://expressjs.com/)
 
 Database: [PostgreSQL](https://www.postgresql.org/)
 
-Other dependencies: [Body Parser](https://github.com/expressjs/body-parser), [Dotenv](https://github.com/bkeepers/dotenv), [Knex](http://knexjs.org/), [Morgan](https://github.com/expressjs/morgan), [Node-Sass](https://github.com/sass/node-sass), [Nodemon](https://nodemon.io/)
+Other dependencies: [Body Parser](https://github.com/expressjs/body-parser), [Dotenv](https://github.com/bkeepers/dotenv), [Knex](http://knexjs.org/), [Morgan](https://github.com/expressjs/morgan), [Node-Sass](https://github.com/sass/node-sass), [Nodemon](https://nodemon.io/), [Moment](https://momentjs.com/), [Cookie Session](https://github.com/expressjs/cookie-session), [Ngrok](https://ngrok.com/)
 
 ## Getting Started
 

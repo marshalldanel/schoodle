@@ -9,7 +9,6 @@ const ENV = process.env.ENV || 'development';
 const bodyParser = require('body-parser');
 const cookieSession = require('cookie-session');
 const express = require('express');
-const flash = require('connect-flash');
 const knexConfig = require('./knexfile');
 const knexLogger = require('knex-logger');
 const knex = require('knex')(knexConfig[ENV]);

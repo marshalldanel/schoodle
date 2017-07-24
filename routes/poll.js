@@ -29,8 +29,14 @@ module.exports = (knex) => {
         description: event.description,
         eventname: event.title,
         eventdate: event.event_date,
-        eventid: req.params.eventid
+        eventid: req.params.eventid,
       };
+
+      if (req.session.toggleOn) {
+        templateVars.toggleOn = req.session.toggleOn;
+      } else {
+        templateVars.toggleOn = false;
+      }
 
       // Select event times
       knex('times').select('*').where('event_id', event.id).then(raw => {
@@ -97,7 +103,7 @@ module.exports = (knex) => {
       }).then(() => {
 
         // Set a cookie to toggle and focus on the vote composer
-        res.cookies({ 'toggleOn': true });
+        req.session.toggleOn = true;
         res.redirect(`/event/${req.params.eventid}`);
 
       }).catch(error => {
@@ -126,6 +132,7 @@ module.exports = (knex) => {
         });
 
     }).then(() => {
+      req.session.toggleOn = false;
       res.redirect(`/event/${req.params.eventid}`);
 
     }).catch(error => {

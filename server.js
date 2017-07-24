@@ -27,7 +27,9 @@ const pollRoutes = require('./routes/poll');
 app.use(morgan('dev'));
 app.use(knexLogger(knex));
 app.use(cookieSession({
-  secret: process.env.SESSION_SECRET || 'development'
+  name: 'session',
+  keys: [process.env.SESSION_SECRET || 'development'],
+  maxAge: 24 * 60 * 60 * 1000
 }));
 app.use(bodyParser.urlencoded({
   extended: true

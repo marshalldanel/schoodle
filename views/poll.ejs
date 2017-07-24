@@ -71,7 +71,7 @@
       <div>
         <div><button class='new-vote-toggle'>Vote</button></div><br>
 
-        <form method='POST' action='/event/<%= eventid %>/new' class='new-vote-composer'>
+        <form method='POST' action='/event/<%= eventid %>/new' class='new-vote-composer<% if (!toggleOn) { %> hide<% } %>'>
           <table>
             <td><input name='voter' placeholder='Your name'></td>
             <% times.forEach((time, i) => { %>

@@ -68,7 +68,7 @@ module.exports = (knex) => {
 
     // Update event details
     knex.transaction(() => {
-      return knex('events').where('event_code', req.params.event_code)
+      return knex('events').where('event_code', req.params.eventCode)
         .update({
           title: req.body.title,
           location: req.body.location,

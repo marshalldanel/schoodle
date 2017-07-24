@@ -15,14 +15,14 @@ module.exports = (knex) => {
     // Guard code: check if admin exists
     return knex('admins').select(1).where('admin_code', adminCode).then((rows) => {
       if (!rows.length) {
-        throw new Error('This admin does not exist!');
+        res.render('error', {message: 'This admin does not exist', status: 401});
       }
     }).then(() => {
 
       // Guard code: check if event has been deleted
       return knex('events').select('*').where('event_code', eventCode).then((rows) => {
         if (rows[0].deleted_at) {
-          return Promise.reject(new Error('This event has been deleted!'));
+          return Promise.reject(new Error('This event has been deleted'));
         }
       }).then(() => {
 
@@ -35,7 +35,7 @@ module.exports = (knex) => {
 
             // Guard code: check if event and admin code match
             if (!rows.length) {
-              return Promise.reject(new Error('This event and admin do not match!'));
+              return Promise.reject(new Error('This event and admin do not match'));
             }
           });
       }).then(() => {
@@ -52,11 +52,11 @@ module.exports = (knex) => {
             event: rows[0]
           });
         } else {
-          return Promise.reject(new Error('This event does not exist!'));
+          return Promise.reject(new Error('This event does not exist'));
         }
 
       }).catch((error) => {
-        res.status(500).send(error.message);
+        res.render('error', {message: error.message, status: error.status});
       });
     });
   });
@@ -91,7 +91,7 @@ module.exports = (knex) => {
           res.redirect(`/event/${eventCode}/${adminCode}/admin`);
 
         }).catch((error) => {
-          res.status(500).send(error);
+          res.render('error', {message: error.message, status: error.status});
         });
     });
   });

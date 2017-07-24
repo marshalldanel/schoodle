@@ -31,7 +31,7 @@ module.exports = (knex) => {
       res.render('event', templateVars);
 
     }).catch((error) => {
-      res.status(500).send(error.message);
+      res.render('error', {message: error.message, status: error.status});
     });
   });
 
@@ -43,7 +43,7 @@ module.exports = (knex) => {
     // Guard code: check if event exists
     knex('events').select(1).where('event_code', eventid).then((rows) => {
       if (!rows.length) {
-        throw new Error('This event does not exist!');
+        throw new Error('This event does not exist');
       }
 
     }).then(() => {
@@ -51,7 +51,7 @@ module.exports = (knex) => {
       // Guard code: check if event was already deleted
       return knex('events').select('*').where('event_code', eventid).then((rows) => {
         if (rows[0].deleted_at) {
-          return Promise.reject(new Error('This event has already been deleted!'));
+          return Promise.reject(new Error('This event has already been deleted'));
         }
       }).then(() => {
 
@@ -64,7 +64,7 @@ module.exports = (knex) => {
         res.redirect('/');
 
       }).catch((error) => {
-        res.status(500).send(error.message);
+        res.render('error', {message: error.message, status: error.status});
       });
     });
   });

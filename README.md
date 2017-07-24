@@ -4,7 +4,14 @@ Full stack webapp that helps users plan events, based on [Doodle.com](https://be
 
 ## Screenshots
 
-Coming soon...
+Home Page
+![Home](https://raw.githubusercontent.com/kaichesterni/schoodle/master/screenshots/home.png)
+
+Event Admin Dashboard
+![Dashboard](https://raw.githubusercontent.com/kaichesterni/schoodle/master/screenshots/dashboard.png)
+
+Event Page
+![Mobile Friendly](https://raw.githubusercontent.com/kaichesterni/schoodle/master/screenshots/mobile.png)
 
 ## Project Stack
 
@@ -25,10 +32,6 @@ Other dependencies: [Body Parser](https://github.com/expressjs/body-parser), [Do
 3. Start the web server using the `npm run local` command. The app will be served at <http://localhost:8080/>.
 4. Go to <http://localhost:8080/> in your browser.
 5. Fantastic. Go send some events to your friends, or your parents, or some strangers.
-
-## Versioning
-
-- 0.0.1
 
 ## Authors
 

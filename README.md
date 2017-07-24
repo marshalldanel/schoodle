@@ -5,12 +5,11 @@ Full stack webapp that helps users plan events, based on [Doodle.com](https://be
 ## Screenshots
 
 Home Page
+
 ![Home](https://raw.githubusercontent.com/kaichesterni/schoodle/master/screenshots/home.png)
 
-Event Admin Dashboard
-![Dashboard](https://raw.githubusercontent.com/kaichesterni/schoodle/master/screenshots/dashboard.png)
-
 Event Page
+
 ![Mobile Friendly](https://raw.githubusercontent.com/kaichesterni/schoodle/master/screenshots/mobile.png)
 
 ## Project Stack

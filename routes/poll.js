@@ -15,10 +15,10 @@ module.exports = (knex) => {
 
       // Guard code
       if (!raw.length) {
-        res.status(404).send('Page does not exist');
+        res.render('error', {message: 'Page does not exist', status: 404});
         return;
       } else if (raw[0].deleted_at) {
-        res.status(404).send('Page was deleted');
+        res.render('error', {message: 'Page was deleted', status: 404});
         return;
       }
 

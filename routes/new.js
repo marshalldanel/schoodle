@@ -18,13 +18,11 @@ module.exports = (knex) => {
 
     // Guard code
     if (!req.body.title) {
-      res.status(401).send('Must include a title!');
-      return;
+      res.render('error', {message: 'Must include a title for your event', status: 401});
     } else if (!req.body.admin_name || !req.body.admin_email) {
-      res.status(401).send('Must include name and email!');
-      return;
+      res.render('error', {message: 'Must include name and email', status: 401});
     } else if (!req.body.date || !req.body.time1) {
-      res.status(401).send('Must include at least one date and one time!');
+      res.render('error', {message: 'Must include at least one date and one time', status: 401});
       return;
     }
 
@@ -71,7 +69,7 @@ module.exports = (knex) => {
         })
 
         .catch((error) => {
-          res.status(500).send(error);
+          res.render('error', {message: error.message, status: error.status});
         });
     });
   });

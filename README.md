@@ -14,7 +14,7 @@ Event Page
 
 ## Project Stack
 
-Front-end:[Sass](http://sass-lang.com/), [JS](https://www.javascript.com/), [jQuery](http://jquery.com/), Insipired by [Bootstrap](http://getbootstrap.com/)
+Front-end: [Sass](http://sass-lang.com/), [JS](https://www.javascript.com/), [jQuery](http://jquery.com/), Insipired by [Bootstrap](http://getbootstrap.com/)
 
 Web Server: [Node JS](https://nodejs.org/en/)
 

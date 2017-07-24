@@ -54,6 +54,11 @@ app.get('/', (req, res) => {
   res.render('index');
 });
 
+// 404 Page
+app.get('*', (req, res) => {
+  res.render('404');
+});
+
 // Listen
 app.listen(PORT, () => {
   console.log('Schoodle listening on port', PORT);

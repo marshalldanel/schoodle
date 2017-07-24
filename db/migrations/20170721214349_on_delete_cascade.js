@@ -1,4 +1,3 @@
-
 exports.up = function(knex, Promise) {
   return knex.schema.alterTable('events', function (table) {
     table.timestamp('deleted_at').defaultTo(null);

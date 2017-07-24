@@ -1,75 +1,67 @@
 'use strict';
 
 const express = require('express');
-const router = express.Router();
 const randStr = require('../public/scripts/make-code');
+const router = express.Router();
 
 module.exports = (knex) => {
 
-  // GET poll/invitation page (send to friends)
+  // Event page
   router.get('/event/:eventid', (req, res) => {
+
+    // Select event details for event that corresponds to URL
     const eventid = req.params.eventid;
     return knex('events').select('*').where('event_code', eventid).then(raw => {
+
+      // Guard code
       if (!raw.length) {
-        res.status(404).send('Page does not exist!');
+        res.status(404).send('Page does not exist');
         return;
-      } else if (raw[0].deleted_at !== null) {
-        res.status(404).send('Page was deleted!');
+      } else if (raw[0].deleted_at) {
+        res.status(404).send('Page was deleted');
         return;
       }
 
-      const data = raw[0];
+      // Put data into templateVars
+      const event = raw[0];
       const templateVars = {
-        address: data.location,
-        description: data.description,
-        eventname: data.title,
-        eventdate: data.event_date,
+        address: event.location,
+        description: event.description,
+        eventname: event.title,
+        eventdate: event.event_date,
         eventid: req.params.eventid
       };
 
-      knex('times').select('*').where('event_id', data.id).then(raw => {
+      // Select event times
+      knex('times').select('*').where('event_id', event.id).then(raw => {
         const times = raw[0];
         templateVars.times = [times.time1, times.time2, times.time3, times.time4];
 
-        knex('polls').select('*').where('event_id', data.id).then(votes => {
+        // Select votes
+        knex('polls').select('*').where('event_id', event.id).then(votes => {
           templateVars.votes = {};
           templateVars.deleted = {};
-          console.log(votes);
+
           votes.forEach(vote => {
-            console.log(vote.name);
-            templateVars.votes[vote.name] = [vote.time1, vote.time2, vote.time3, vote.time4];
-            templateVars.deleted[vote.name] = vote.deleted_at;
+            if (!vote.deleted_at) {
+              templateVars.votes[vote.name] = [vote.time1, vote.time2, vote.time3, vote.time4];
+            }
           });
-          res.render('poll.ejs', templateVars);
+
+          res.render('poll', templateVars);
         });
       });
     });
   });
 
-  // NOT COMPLETED
-  // router.post('/event/:eventid/delete', (req, res) => {
-  //   const eventid = req.params.eventid;
-  //   return knex('events').select('*')
-  //     .join('polls', 'events.id', '=', 'event_id')
-  //     .where('event_code', eventid)
-  //     .then((row) => {
-  //       console.log(row);
-  //       console.log(votes[person]);
-  //       return knex('polls').select('*')
-  //         .where('name', )
-  //         .then(() => {
-  //           this.closest('tr').addClass('hidden');
-  //           res.redirect('/event/:eventid');
-  //         });
-  //     }).catch((err) => {
-  //       res.status(404).send('Attendee doesn\'t exist');
-  //     });
-  // });
-
+  // Delete a vote
   router.post('/event/:eventid/delete', (req, res) => {
+
+    // Select event ID
     return knex('events').select('id').where('event_code', req.params.eventid)
       .then((row) => {
-        console.log(row[0].id);
+
+        // Delete poll with matching ID and person name
         return knex('polls').select()
           .where({
             event_id: row[0].id,
@@ -77,78 +69,51 @@ module.exports = (knex) => {
           .update({
             deleted_at: new Date()
           });
+
       }).then(() => {
         res.redirect(`/event/${req.params.eventid}`);
-      }).catch((e) => {
-        res.status(404).send(e);
-          
+
+      }).catch(error => {
+        res.status(500).send(error);
       });
   });
 
+  // Edit a vote
+  router.post('/event/:eventid/edit', (req, res) => {
 
-  // NOT COMPLETED
-  // router.get('/event/:eventid/edit', (req, res) => {
-  //   const eventid = req.params.eventid;
-  //   knex('events').select().where('event_code', eventid).then((rows) => {
-  //     if (rows[0].deleted_at !== null) {
-  //       throw new Error('This event doesn\'t exist!');
-  //     }
-  //   }).then(() => { 
-  //     return knex('events').select()
-  //       .join('polls', 'events.id', '=', 'event_id')
-  //       .where('event_code', eventid)
-  //       .where('name', name)
-  //       .then(rows => {
-  //         return knex('polls').select('*').where('id', '.poll_results > tr.person').then(votes => {
-  //           templateVars.votes = {};
-  //           $('//').each((votes) => {
-  //             $(this).find('td').each(() => {
-  //               templateVars.votes[vote.name] = [vote.time1, vote.time2, vote.time3, vote.time4];
-  //             });
-  //             res.render('poll.ejs', templateVars);
-  //           });
-  //         });
-  //       });
-  //   }).catch((err) => {
-  //     res.status(404).send('Error 404: Doesn\'t exist');
-  //   });
-  // });
+    // Select event ID
+    return knex('events').select('id').where('event_code', req.params.eventid)
+      .then((row) => {
 
-  // NOT COMPLETED
-  // router.post('/event/:eventid/update', (req, res) => {
-  //   let eventid = req.params.eventid;
-  //   knex.transaction(() => {
-  //     return (
-  //       knex('events').select()
-  //       .join('polls', 'events.id', '=', 'event_id')
-  //       .where('event_code', eventid)
-  //       .where('name', person)
-  //       .then(rows => {
-  //         return knex('polls').where('event_id', events.id)
-  //           if (rows.deleted_at !== null) {
-  //             return Promise.reject(new Error('Event was deleted'));
-  //           }
-  //           .update({
-  //             // Update votes?
-  //             time1: req.body.time1,
-  //             time2: req.body.time2,
-  //             time3: req.body.time3,
-  //             time4: req.body.time4
-  //           });
-  //       }).then(() => {
-  //         res.redirect(`/event/${eventid}`);
-  //       }).catch((err) => {
-  //         console.log(err);
-  //         res.status(404).send(err);
-  //       })
-  //     );
-  //   });
-  // });
+        // Delete poll with matching ID and person name
+        return knex('polls').select()
+          .where({
+            event_id: row[0].id,
+            name: req.body.person})
+          .update({
+            deleted_at: new Date()
+          });
 
+      }).then(() => {
+
+        // Set a cookie to toggle and focus on the vote composer
+        res.cookies({ 'toggleOn': true });
+        res.redirect(`/event/${req.params.eventid}`);
+
+      }).catch(error => {
+        res.status(500).send(error);
+      });
+  });
+
+  // Create new vote
   router.post('/event/:eventid/new', (req, res) => {
     knex.transaction(() => {
+
+      // Select event that matches event code in URL
       return knex('events').select('id').where('event_code', req.params.eventid)
         .then((row) => {
+
+          // Update the vote table
           return knex('polls')
             .insert({
               event_id: row[0].id,
@@ -157,13 +122,14 @@ module.exports = (knex) => {
               time2: req.body.time2,
               time3: req.body.time3,
               time4: req.body.time4
-  
             });
         });
+
     }).then(() => {
       res.redirect(`/event/${req.params.eventid}`);
-    }).catch(() => {
-      res.status(404).send('Error, try again!');
+
+    }).catch(error => {
+      res.status(500).send(error);
     });
   });
 

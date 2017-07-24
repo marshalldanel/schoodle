@@ -1,14 +1,13 @@
 {
   "name": "schoodle",
   "version": "1.0.0",
-  "description": "",
+  "description": "Full stack webapp that helps users plan events",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js",
-    "local": "./node_modules/.bin/nodemon --ignore public/",
     "knex": "./node_modules/.bin/knex",
-    "sass": "./node_modules/node-sass/bin/node-sass"
+    "local": "./node_modules/.bin/nodemon --ignore public/",
+    "sass": "./node_modules/node-sass/bin/node-sass",
+    "start": "node server.js"
   },
   "author": "camli23, kaichesterni, marshalldanel",
   "license": "ISC",

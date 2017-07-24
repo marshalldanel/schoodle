@@ -1,84 +1,93 @@
 <!DOCTYPE html>
 <html lang='en'>
-  <head>
-    <title>Schoodle</title>
-    <% include partials/_header %>
-  </head>
 
-  <body>
-    <main class='event-jumbo'>
-      <div>
-        <h1><%= eventname %></h1>
-        <h2><%= eventdate %></h2>
-        
-        <div class='event-details'>
-          <p>
-            Address: <%= address %>
-            <br>
-            Description: <%= description %>
-          </p>
-        </div>
+<head>
+  <title>Schoodle</title>
+  <% include partials/_header %>
+</head>
 
-        <table class='poll-results'>
-          <tr>
-            <th>Name</th>
-            <% times.forEach(time => { %>
-              <% if (time) { %>
-                <th><%= time %></th>
-              <% } %>
-            <% }); %>
-            <th>Edit</th>
-            <th>Delete</th>
-          </tr>
-          
-          <% for (let person in votes) { %>
-            <% if (!deleted[person]) { %>
-              <tr>
-                <td class='vote true'><%= person %></td>
-                <% votes[person].forEach((vote) => { %>
-                  <% if (vote) { %>
-                    <td class='vote true'>Y</td>
-                  <% } else { %>
-                    <td class='vote false'>N</td>
-                  <% } %>
-                <% }) %>
-                <td>
-                  <form method='post' action='/event/<%= eventid %>/edit'>
-                    <input class='hide' name='person' value='<%= person %>'>
-                    <input class='hide' name='eventid' value='<%= eventid %>'>
-                    <button class='edit-vote' person='<%= person %>'><i class='fa fa-pencil'></i></button>
-                  </form>
-                </td>
-                <td>
-                  <form method='post' action='/event/<%= eventid %>/delete'>
-                    <input class='hide' name='person' value='<%= person %>'>
-                    <input class='hide' name='eventid' value='<%= eventid %>'>
-                    <button class='delete-vote' person='<%= person %>'><i class='fa fa-trash-o' aria-hidden='true'></i></button>
-                  </form>
-                </td>
-              </tr>
-            <% } %>
-          <% } %>
-        </table>
-        
-        <br>
-        <div>
-          <div><button class='new-vote-toggle'>Vote</button></div><br>
-          <form method='POST' action='/event/<%= eventid %>/new' class='new-vote-composer'>
-            <table>
-              <td><input name='voter' placeholder='Your name'></td>
-              <% times.forEach((time, i) => { %>
-                <% if (time) { %>
-                  <td>
-                    <label for='time<%= i + 1 %>'><%= time %></label><input type='checkbox' name='time<%= i + 1 %>' id='time<%= i + 1 %>'>
-                  </td>
+<body>
+  <main class='event-jumbo'>
+    <div>
+      <h1><%= eventname %></h1>
+      <h2><%= eventdate %></h2>
+
+      <div class='event-details'>
+        <p>
+          Address: <%= address %><br>Description: <%= description %>
+        </p>
+      </div>
+
+      <table class='poll-results'>
+        <tr>
+          <th>Name</th>
+
+          <% times.forEach(time => { %>
+            <th>
+              <%= time %>
+            </th>
+          <% }); %>
+
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+
+        <% for (let person in votes) { %>
+          <% if (!deleted[person]) { %>
+            <tr>
+              <td class='vote true'>
+                <%= person %>
+              </td>
+
+              <% votes[person].forEach((vote) => { %>
+                <% if (vote) { %>
+                  <td class='vote true'>Y</td>
+                <% } else { %>
+                  <td class='vote false'>N</td>
                 <% } %>
               <% }) %>
-              <td><button>Save</button></td>
-            </table>
-          </form>
-        </div>
+
+              <td>
+                <form method='post' action='/event/<%= eventid %>/edit'>
+                  <input class='hide' name='person' value='<%= person %>'>
+                  <input class='hide' name='eventid' value='<%= eventid %>'>
+                  <button class='edit-vote' person='<%= person %>'><i class='fa fa-pencil'></i></button>
+                </form>
+              </td>
+
+              <td>
+                <form method='post' action='/event/<%= eventid %>/delete'>
+                  <input class='hide' name='person' value='<%= person %>'>
+                  <input class='hide' name='eventid' value='<%= eventid %>'>
+                  <button class='delete-vote' person='<%= person %>'><i class='fa fa-trash-o' aria-hidden='true'></i></button>
+                </form>
+              </td>
+            </tr>
+          <% } %>
+        <% } %>
+      </table>
+
+      <br>
+      <div>
+        <div><button class='new-vote-toggle'>Vote</button></div><br>
+
+        <form method='POST' action='/event/<%= eventid %>/new' class='new-vote-composer'>
+          <table>
+            <td><input name='voter' placeholder='Your name'></td>
+            <% times.forEach((time, i) => { %>
+              <% if (time) { %>
+                <td>
+                  <label for='time<%= i + 1 %>'><%= time %></label>
+                  <input type='checkbox' name='time<%= i + 1 %>' id='time<%= i + 1 %>'>
+                </td>
+                <% } %>
+              <% }) %>
+            <td><button>Save</button></td>
+          </table>
+        </form>
       </div>
-    </main>
-  </body>
+    </div>
+  </main>
+</body>
+
 </html>

@@ -1,31 +1,36 @@
 <!DOCTYPE html>
 <html lang='en'>
-  <head>
-    <title>Schoodle</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <% include partials/_header %>
-  </head>
 
-  <body>
-    <main class='new-event-jumbo'>
-      <div>
-        <h1>Edit Your Event</h1>
-        <form method='POST' action='/event/<%=event.event_code%>/<%= event.admin_code%>/edit'>
-          <input name='title' type='text' value='<%=event.title%>' maxlength='32' placeholder='Event Title'><br><br>
-          <input name='location' type='text' value='<%=event.location%>' maxlength='64' placeholder='Event Location'><br><br>
-          <input name='description' type='text' value='<%=event.description%>' maxlength='256' placeholder='Event Description'><br><br>
-          <input name='date' type='date' value='<%=event.event_date%>' maxlength='256'><br><br>
-          <label for='time1'>Time 1</label>
-          <input class='input-times' name='time1' value='<%=event.time1%>' id='time1' type='time'><br><br>
-          <label for='time2'>Time 2</label>
-          <input class='input-times' name='time2' value='<%=event.time2%>' id='time2' type='time'><br><br>
-          <label for='time3'>Time 3</label>
-          <input class='input-times' name='time3' value='<%=event.time3%>' id='time3' type='time'><br><br>
-          <label for='time4'>Time 4</label>
-          <input class='input-times' name='time4' value='<%=event.time4%>' id='time4' type='time'><br><br>
-          <button type='submit'>Update</button>
-        </form>
-      </div>
-    </main>
-  </body>
+<head>
+  <title>Schoodle</title>
+  <% include partials/_header %>
+</head>
+
+<body>
+  <main class='new-event-jumbo'>
+    <div>
+      <h1>Edit Your Event</h1>
+      <form method='POST' action='/event/<%=event.event_code%>/<%= event.admin_code%>/edit'>
+        <input name='title' type='text' value='<%=event.title%>' maxlength='32' placeholder='Event Title'><br><br>
+        <input name='location' type='text' value='<%=event.location%>' maxlength='64' placeholder='Event Location'><br><br>
+        <input name='description' type='text' value='<%=event.description%>' maxlength='256' placeholder='Event Description'><br><br>
+
+        <label for='date'>Date of Event</label><br>
+        <input name='date' id='date' type='date' value='<%=event.event_date%>' maxlength='256'><br><br>
+
+        <label for='time1'>Time 1</label>
+        <input class='input-times' name='time1' value='<%=event.time1%>' id='time1' type='time'><br><br>
+        <label for='time2'>Time 2</label>
+        <input class='input-times' name='time2' value='<%=event.time2%>' id='time2' type='time'><br><br>
+        <label for='time3'>Time 3</label>
+        <input class='input-times' name='time3' value='<%=event.time3%>' id='time3' type='time'><br><br>
+        <label for='time4'>Time 4</label>
+        <input class='input-times' name='time4' value='<%=event.time4%>' id='time4' type='time'><br><br>
+
+        <button type='submit'>Update</button>
+      </form>
+    </div>
+  </main>
+</body>
+
 </html>

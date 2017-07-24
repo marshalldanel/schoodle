@@ -1,31 +1,37 @@
 "use strict";
 
 const express = require('express');
-const router  = express.Router();
 const randStr = require('../public/scripts/make-code');
+const router = express.Router();
 
 module.exports = (knex) => {
 
+  // New event page
   router.get('/event/new', (req, res) => {
-    res.render('new', req.body);
+    res.render('new');
   });
 
+  // Create a new event
   router.post('/event/new', (req, res) => {
     let randAdmin = randStr();
     let randEvent = randStr();
 
+    // Guard code
     if (!req.body.title) {
-      res.status(404).send('Must include a title!');
+      res.status(401).send('Must include a title!');
       return;
     } else if (!req.body.admin_name || !req.body.admin_email) {
-      res.status(404).send('Must include name and email!');
+      res.status(401).send('Must include name and email!');
       return;
     } else if (!req.body.date || !req.body.time1) {
-      res.status(404).send('Must include a date and one time!');
+      res.status(401).send('Must include at least one date and one time!');
       return;
     }
 
+    // Save event to database
     knex.transaction(() => {
+
+      // Save admin details into admins database
       return knex('admins')
         .insert({
           name: req.body.admin_name,
@@ -34,6 +40,8 @@ module.exports = (knex) => {
         })
         .returning('*')
         .then(([admin]) => {
+
+          // Save event details into events database
           return knex('events')
             .insert({
               title: req.body.title,
@@ -45,6 +53,8 @@ module.exports = (knex) => {
             })
             .returning('*')
             .then(([event]) => {
+
+              // Save time details into times database
               return knex('times')
                 .insert({
                   time1: req.body.time1,
@@ -54,13 +64,14 @@ module.exports = (knex) => {
                   event_id: event.id
                 });
             });
-           
         })
+
         .then(() => {
           res.redirect(`/event/${randEvent}/${randAdmin}/admin`);
         })
-        .catch(() => {
-          res.status(404).send('Error, try again!');
+
+        .catch((error) => {
+          res.status(500).send(error);
         });
     });
   });

@@ -1,6 +1,6 @@
 # Schoodle
 
-Will be a Doodle clone but is currently a work in progress.
+Full stack webapp that helps users plan events, based on [Doodle.com](https://beta.doodle.com/)
 
 ## Screenshots
 
@@ -28,15 +28,14 @@ Other dependencies: [Body Parser](https://github.com/expressjs/body-parser), [Do
 
 ## Versioning
 
-* 0.0.1
+- 0.0.1
 
 ## Authors
 
-* [https://github.com/camli23](https://github.com/camli23)
-* [https://github.com/kaichesterni](https://github.com/kaichesterni)
-* [https://github.com/marshalldanel](https://github.com/marshalldanel/)
-
+- [Cameron Cutler](https://github.com/camli23)
+- [Chester Ni](https://github.com/kaichesterni)
+- [Marshall Danel](https://github.com/marshalldanel/)
 
 ## Acknowledgments
 
-* The good folks at [Lighthouse Labs](https://www.lighthouselabs.ca/)
+- The good folks at [Lighthouse Labs](https://www.lighthouselabs.ca/)

@@ -1,4 +1,3 @@
-
 exports.up = function(knex, Promise) {
   return knex.schema.createTable('times', function (table) {
     table.integer('event_id').unsigned();

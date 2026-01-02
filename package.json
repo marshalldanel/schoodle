@@ -12,21 +12,21 @@
   "author": "camli23, kaichesterni, marshalldanel",
   "license": "ISC",
   "dependencies": {
-    "body-parser": "^1.15.2",
+    "body-parser": "^1.20.4",
     "cookie-session": "^2.0.0-beta.2",
     "dotenv": "^4.0.0",
     "ejs": "^2.4.1",
-    "express": "^4.13.4",
+    "express": "^4.22.0",
     "knex": "^0.13.0",
     "knex-logger": "^0.1.0",
     "moment": "^2.18.1",
     "morgan": "^1.7.0",
-    "node-sass-middleware": "^0.11.0",
-    "nodemon": "^1.11.0",
+    "node-sass-middleware": "^1.1.0",
+    "nodemon": "^2.0.0",
     "pg": "^7.0.1"
   },
   "devDependencies": {
-    "nodemon": "^1.9.2",
+    "nodemon": "^2.0.0",
     "sqlite3": "^3.1.4"
   }
 }
